@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stiker Bergerak</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #87ceeb, #ffffff);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        .sticker {
+            position: absolute;
+            width: 80px;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes moveSide {
+            0% { transform: translateX(0px); }
+            50% { transform: translateX(50px); }
+            100% { transform: translateX(0px); }
+        }
+
+        .randomMove {
+            animation: float 5s infinite ease-in-out, moveSide 7s infinite ease-in-out;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff4c4c;
+        }
+    </style>
+</head>
+<body>
+
+<h1>✨ Stiker Bergerak ✨</h1>
+<button onclick="tambahStiker()">Tambah Stiker</button>
+
+<script>
+    const stickers = [
+        "https://i.imgur.com/7yUvePI.png",
+        "https://i.imgur.com/Z6X9Z6X.png",
+        "https://i.imgur.com/4AiXzf8.png",
+        "https://i.imgur.com/jTqk6XK.png"
+    ];
+
+    function tambahStiker() {
+        const img = document.createElement("img");
+        img.src = stickers[Math.floor(Math.random() * stickers.length)];
+        img.className = "sticker randomMove";
+
+        // posisi random
+        img.style.left = Math.random() * window.innerWidth + "px";
+        img.style.top = Math.random() * window.innerHeight + "px";
+
+        document.body.appendChild(img);
+    }
+
+    // buat beberapa stiker awal
+    for (let i = 0; i < 5; i++) {
+        tambahStiker();
+    }
+</script>
+
+</body>
+</html>
